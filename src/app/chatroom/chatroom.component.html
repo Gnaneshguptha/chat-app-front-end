@@ -1,0 +1,92 @@
+<section style="background-color: #eee;">
+  <div class="container py-5">
+
+    <div class="row">
+
+      <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
+        <h5 class="font-weight-bold mb-3 text-center text-lg-start">Welcome {{currentUserName}}</h5>
+        <div class="card">
+          <div class="card-body">
+            <ul class="list-unstyled mb-0">
+              <li class="p-2 border-bottom" style="background-color: #eee;">
+                <!-- search engine -->
+                <div>
+                  <input type="text" [(ngModel)]="searchQuery" placeholder="Search users" />
+                  <button (click)="search(searchQuery)">Search</button>
+                </div>
+                <ul>
+                  <li *ngFor="let user of users$">
+                    {{ user.username }}
+                    <button class="" (click)="ChatKnow()">Chat Know</button>
+                  </li>
+                </ul>
+                <!--  -->
+                <!--  -->
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-7 col-xl-8">
+        <ul class="list-unstyled">
+          <div class="container row" [formGroup]="targetUserForm">
+            <div class="card mt-5
+             col-md-12" style="Height: 600px">
+              <div class="card-body col-md-12 row"> 
+                <h5 class="card-title">Chat with  {{reciversUserName}}</h5>
+                <!--  -->
+                <!--  -->
+                <div class="container-fluid mt-3" #messageContainer>
+                  <div *ngFor="let message of messages" [ngClass]="{'mb-3': true, 'sent': message.messageType === 'sender', 'received': message.messageType === 'receiver'}">
+                    <div [ngClass]="{'message': true, 'text-right': message.messageType === 'sender', 'text-left': message.messageType === 'receiver'}">
+                      <div class="message-bubble row">
+                        <span class="message-time col-xl-12 text-muted small">{{ message.timestamp | date: 'mediumTime' }}</span>
+                        <span class="message-sender col-xl-12 font-weight-bold small">{{ message.sendername }}</span>
+                        <span class="message-content col-xl-12 small">{{ message.message }}</span>
+                      </div>                      
+                    </div>
+                  </div>
+                </div>
+                <!--  -->
+                <!--  -->
+              </div>
+              <li class="row bg-white mt-5 mb-3">
+                <div class="col-md-12 row form-outline">
+                  <div class="col-md-6 ">
+                  </div>
+                  <div class="col-md-6 ">
+                    <input type="text" class="form-control  room-input" id="room-input" placeholder="Enter Room ID">
+                  </div>
+                  <textarea placeholder="Type your message here" class="form-control" formControlName="sendMessageInput"
+                    rows="2"></textarea>
+                  <label class="form-label" for="textAreaExample2">Message</label>
+                </div>
+                <div class="row col-md-12">
+                  <button type="button" class="btn btn-info btn-rounded col-md-3" (click)="askServer()">Send
+                    message</button>
+                  <button type="button" class="btn btn-warning btn-rounded col-md-3" (click)="createRoom()">Create
+                    Room</button>
+                  <button type="button" class="btn btn-success btn-rounded col-md-3" (click)="joinRoom()">Answer the
+                    call</button>
+                  <button type="button" class="btn btn-danger btn-rounded col-md-3">Reject the call</button>
+                </div>
+              </li>
+            </div>
+          </div>
+        </ul>
+        <p id="notification" hidden></p>
+        <div class="entry-modal" id="entry-modal"></div>
+        <div class="meet-area">
+          <!-- Remote Video Element-->
+          <video id="remote-video"></video>
+
+          <!-- Local Video Element-->
+          <video id="local-video"></video>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

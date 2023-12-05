@@ -1,0 +1,35 @@
+.sent {
+    /* styles for sent messages */
+  }
+  
+  .received {
+    /* styles for received messages */ 
+  }
+  
+  .text-right {
+    text-align: right; 
+  }
+  
+  .text-left {
+    text-align: left;
+  }
+
+  .message {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .message-bubble {
+    max-width: 70%; /* Adjust based on your design */
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #e6e6e6; /* Adjust to your desired background color */
+    margin: 5px;
+  }
+  
+  .text-right .message-bubble {
+    align-self: flex-end;
+    background-color: #007bff; /* Adjust to your desired background color for sender messages */
+    color: #fff; /* Adjust to your desired text color for sender messages */
+  }
